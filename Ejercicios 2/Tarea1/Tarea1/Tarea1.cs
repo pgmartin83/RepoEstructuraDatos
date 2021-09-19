@@ -2,7 +2,7 @@
 
 namespace Tarea1
 {
-    public class Program
+    public class Tarea1
     {
         public static void Main()
         {
