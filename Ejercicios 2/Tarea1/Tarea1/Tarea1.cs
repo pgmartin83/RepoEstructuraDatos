@@ -20,7 +20,7 @@ namespace Tarea1
                     Console.WriteLine("Identificador o contraseña no válida.");
             }
             while ((numero1 != identificador) || (numero2 != contraseña));
-
+            
             Console.Write("Identificador y contraseña aceptada");
         }
     }
