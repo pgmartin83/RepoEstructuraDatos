@@ -6,13 +6,13 @@ namespace Tarea1
     {
         public static void Main()
         {
-            Single real;
+            float real;
             Console.WriteLine("Ingrese un número real: ");
             real = Convert.ToSingle(Console.ReadLine());
             Signo(real);
         }
 
-        public static void Signo(Single n)
+        public static void Signo(float n)
         {
             if (n < 0)
                 Console.Write("-1");
