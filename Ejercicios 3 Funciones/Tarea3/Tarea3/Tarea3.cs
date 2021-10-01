@@ -15,17 +15,24 @@ namespace Tarea3
 
         static bool EsPrimo(int numero)
         {
-            bool b;
+            int a = 0;
             for (int i = 2; i < numero; i++)
             {
                 if ((numero % i) == 0)
                 {
-                    return b = false;
-                    
+                    a++;
                 }
-            }
 
-            return b = true;
+            }
+            if (a != 0)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+            
         }
     }
 }
