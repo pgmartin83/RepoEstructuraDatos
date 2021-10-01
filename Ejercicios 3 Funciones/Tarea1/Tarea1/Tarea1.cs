@@ -16,8 +16,10 @@ namespace Tarea1
         {
             if (n < 0)
                 Console.Write("-1");
-            else
+            else if (n > 0)
                 Console.Write("1");
+            else 
+                Console.Write("0");
         }      
     }
 
