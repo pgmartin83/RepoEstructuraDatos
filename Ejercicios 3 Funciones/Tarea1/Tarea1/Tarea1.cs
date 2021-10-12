@@ -7,7 +7,7 @@ namespace Tarea1
         public static void Main()
         {
             float real;
-            Console.WriteLine("Ingrese un número real: ");
+            Console.Write("Ingrese un número real: ");
             real = Convert.ToSingle(Console.ReadLine());
             Signo(real);
         }
