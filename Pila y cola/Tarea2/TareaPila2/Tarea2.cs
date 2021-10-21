@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections;
 
-namespace TareaPila2
+namespace Tarea2
 {
-    public class TareaPila2
+    public class Tarea2
     {
         public static void Main()
         {
