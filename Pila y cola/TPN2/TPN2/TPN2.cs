@@ -63,6 +63,8 @@ namespace TPN2
             Console.WriteLine("2- Ver todos los nombres agendados");
             Console.WriteLine("3- Buscar por Nombre");
             Console.WriteLine("4- Buscar por DNI");
+            Console.WriteLine("5- Ingresar Turno");
+            Console.WriteLine("6- Listar Turnos");
             Console.WriteLine("0- Salir");
         }
 
@@ -218,13 +220,15 @@ namespace TPN2
                     //Problemas con las fechas
 
                     Console.Write("Ingrese el día: ");
-                    string dia = Console.ReadLine();
+                    var dia = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Ingrese el mes: ");
-                    string mes = Console.ReadLine();
+                    var mes = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Ingrese el año: ");
-                    string año = Console.ReadLine();
+                    var año = Convert.ToInt32(Console.ReadLine());
 
                     DateTime fecha = new DateTime(dia, mes, año);
+
+                    //escriba el turno con el siguiente formato dd/mm/yyyy
 
                     //Console.WriteLine(fecha.ToString("dd/MM/yyyy"));
 
