@@ -10,7 +10,8 @@ namespace TPN2
         
         struct tipoPersona
         {
-            public string nombre, email, turno;
+            public string nombre, email;
+            public DateTime turno;
             public int nacimiento, dni, telefono;
             //public string fecha = DateTime.Now.ToString("");
                         
@@ -36,6 +37,7 @@ namespace TPN2
                     case "2": MostrarDatos(); break;
                     case "3": BuscarNombre(); break;
                     case "4": BuscarDNI(); break;
+                    case "5": AgendarTurno(); break;
 
                     case "0": // Salir de la aplicación
                         Console.WriteLine();
@@ -54,7 +56,8 @@ namespace TPN2
 
         public static void MostrarMenu() //Menú principal
         {
-            Console.WriteLine("Agenda");
+            DateTime hoy = DateTime.Now;
+            Console.WriteLine("Agenda {0}", hoy);
             Console.WriteLine();
             Console.WriteLine("1- Añadir una nueva persona");
             Console.WriteLine("2- Ver todos los nombres agendados");
@@ -201,7 +204,44 @@ namespace TPN2
             fichero.Close();
         }
 
+        public static void AgendarTurno() //Agenda turnos con DNI 
+        {
+            Console.Write("Escriba el DNI:  ");
+            int buscar = Convert.ToInt32(Console.ReadLine());
+            bool encontrado = false;
+            for (int i = 0; i < cantidad; i++)
+                if (buscar == gente[i].dni)
+                {
+                    encontrado = true;
+                    Console.WriteLine("DNI: {2}, Nombre: {1}", i + 1, gente[i].nombre, gente[i].dni);
+                    
+                    //Problemas con las fechas
 
+                    Console.Write("Ingrese el día: ");
+                    string dia = Console.ReadLine();
+                    Console.Write("Ingrese el mes: ");
+                    string mes = Console.ReadLine();
+                    Console.Write("Ingrese el año: ");
+                    string año = Console.ReadLine();
+
+                    DateTime fecha = new DateTime(dia, mes, año);
+
+                    //Console.WriteLine(fecha.ToString("dd/MM/yyyy"));
+
+                    Console.Write(fecha);
+                    gente[i].turno = fecha;
+
+
+                }
+
+            if (!encontrado)
+            {
+                Console.WriteLine("No se ha encontrado.");
+                Console.WriteLine();
+            }
+            Console.WriteLine();
+
+        }
 
     }
 
