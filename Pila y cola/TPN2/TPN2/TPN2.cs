@@ -38,6 +38,7 @@ namespace TPN2
                     case "3": BuscarNombre(); break;
                     case "4": BuscarDNI(); break;
                     case "5": AgendarTurno(); break;
+                    case "6": MostrarTurno(); break;
 
                     case "0": // Salir de la aplicación
                         Console.WriteLine();
@@ -72,8 +73,7 @@ namespace TPN2
         {
             if (cantidad < capacidad - 1)
             {
-                Console.WriteLine("Introduciendo la persona {0}",
-                  cantidad + 1);
+                Console.WriteLine("Introduciendo la persona {0}", cantidad + 1);
 
                 Console.Write("Introduzca el nombre: ");
                 gente[cantidad].nombre = Console.ReadLine();
@@ -104,7 +104,7 @@ namespace TPN2
                 Console.WriteLine("No hay datos");
             else
                 for (int i = 0; i < cantidad; i++)
-                    Console.WriteLine("{0}: {1}", i + 1, gente[i].nombre);
+                    Console.WriteLine("{0}: {1}, DNI: {2}", i + 1, gente[i].nombre, gente[i].dni);
             Console.WriteLine();
         }
 
@@ -167,6 +167,8 @@ namespace TPN2
                 Console.WriteLine("Abriendo Archivo...");
                 StreamReader fichero = File.OpenText(nombreArchivo);
                 string linea1, linea2, linea3, linea4, linea5;
+                //DateTime linea6 = new DateTime();
+                // Error al leer lineas que no son del tipo fecha
                 do
                 {
                     linea1 = fichero.ReadLine();
@@ -176,6 +178,7 @@ namespace TPN2
                     linea3 = fichero.ReadLine();
                     linea4 = fichero.ReadLine();
                     linea5 = fichero.ReadLine();
+                    DateTime linea6 = DateTime.Parse(fichero.ReadLine());                    
 
                     if (cantidad < capacidad - 1)
                     {
@@ -184,10 +187,11 @@ namespace TPN2
                         gente[cantidad].nacimiento = Convert.ToInt32(linea3);
                         gente[cantidad].dni = Convert.ToInt32(linea4);
                         gente[cantidad].telefono = Convert.ToInt32(linea5);
+                        gente[cantidad].turno = linea6;
                         cantidad++;
                     }
                 }
-                while ((linea1 != null) && (linea2 != null) && (linea3 != null) && (linea4 != null) && (linea5 != null));
+                while ((linea1 != null) && (linea2 != null) && (linea3 != null) && (linea4 != null) && (linea5 != null));// && (linea6 != null));
                 fichero.Close();
             }
         }
@@ -202,6 +206,7 @@ namespace TPN2
                 fichero.WriteLine(gente[i].nacimiento);
                 fichero.WriteLine(gente[i].dni);
                 fichero.WriteLine(gente[i].telefono);
+                fichero.WriteLine(gente[i].turno);
             }
             fichero.Close();
         }
@@ -216,26 +221,34 @@ namespace TPN2
                 {
                     encontrado = true;
                     Console.WriteLine("DNI: {2}, Nombre: {1}", i + 1, gente[i].nombre, gente[i].dni);
-                    
-                    //Problemas con las fechas
 
+                    Console.WriteLine("Ingrese la fecha y la hora del turno (dd/MM/yyyy HH:mm)");
+                    //DateTime fecha = DateTime.ParseExact(Console.ReadLine(), formato, null);
+                    
+                    DateTime fecha = DateTime.Parse(Console.ReadLine());
+                    /*
                     Console.Write("Ingrese el día: ");
                     var dia = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Ingrese el mes: ");
                     var mes = Convert.ToInt32(Console.ReadLine());
                     Console.Write("Ingrese el año: ");
                     var año = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Ingrese la hora: ");
+                    var hora = Convert.ToInt32(Console.ReadLine());
 
-                    DateTime fecha = new DateTime(dia, mes, año);
+                    DateTime fecha = new DateTime();
 
-                    //escriba el turno con el siguiente formato dd/mm/yyyy
+                    
+                    fecha = fecha.AddDays(dia-1);
+                    fecha = fecha.AddMonths(mes-1);
+                    fecha = fecha.AddYears(año-1);
+                    fecha = fecha.AddHours(hora);
 
-                    //Console.WriteLine(fecha.ToString("dd/MM/yyyy"));
+                    */
 
-                    Console.Write(fecha);
+                    Console.Write("El turno con fecha {0} se asigno a {1} ",fecha, gente[i].nombre);
                     gente[i].turno = fecha;
-
-
+                                        
                 }
 
             if (!encontrado)
@@ -245,6 +258,16 @@ namespace TPN2
             }
             Console.WriteLine();
 
+        }
+
+        public static void MostrarTurno() //Muestra todos los turnos con fecha, nombre y DNI, opción 6 del menú principal
+        {
+            if (cantidad == 0)
+                Console.WriteLine("No hay datos");
+            else
+                for (int i = 0; i < cantidad; i++)
+                    Console.WriteLine("{0}: Fecha:{1}, {2}, DNI: {3}", i + 1, gente[i].turno ,gente[i].nombre, gente[i].dni);
+            Console.WriteLine();
         }
 
     }
