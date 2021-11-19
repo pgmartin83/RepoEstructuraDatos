@@ -178,7 +178,7 @@ namespace TPN2
                     linea3 = fichero.ReadLine();
                     linea4 = fichero.ReadLine();
                     linea5 = fichero.ReadLine();
-                    DateTime linea6 = DateTime.Parse(fichero.ReadLine());                    
+                    //DateTime linea6 = DateTime.Parse(fichero.ReadLine());                    
 
                     if (cantidad < capacidad - 1)
                     {
@@ -187,7 +187,7 @@ namespace TPN2
                         gente[cantidad].nacimiento = Convert.ToInt32(linea3);
                         gente[cantidad].dni = Convert.ToInt32(linea4);
                         gente[cantidad].telefono = Convert.ToInt32(linea5);
-                        gente[cantidad].turno = linea6;
+                        //gente[cantidad].turno = linea6;
                         cantidad++;
                     }
                 }
