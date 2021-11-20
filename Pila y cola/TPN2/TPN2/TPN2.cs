@@ -12,7 +12,7 @@ namespace TPN2
         {
             public string nombre, email;
             public DateTime turno;
-            public int nacimiento, dni, telefono;
+            public string nacimiento, dni, telefono;
             //public string fecha = DateTime.Now.ToString("");
                         
         }
@@ -82,13 +82,15 @@ namespace TPN2
                 gente[cantidad].email = Console.ReadLine();
 
                 Console.Write("Introduzca el año de nacimiento: ");
-                gente[cantidad].nacimiento = Convert.ToInt32(Console.ReadLine());
+                gente[cantidad].nacimiento = Console.ReadLine();//Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Introduzca el DNI: ");
-                gente[cantidad].dni = Convert.ToInt32(Console.ReadLine());
+                gente[cantidad].dni = Console.ReadLine();//Convert.ToInt32(Console.ReadLine());
 
                 Console.Write("Introduzca el número de teléfono: ");
-                gente[cantidad].telefono = Convert.ToInt32(Console.ReadLine());
+                gente[cantidad].telefono = Console.ReadLine(); //Convert.ToInt32(Console.ReadLine());
+
+                //gente[cantidad].turno = DateTime.Now;
 
                 cantidad++;
                 Console.WriteLine();
@@ -133,7 +135,7 @@ namespace TPN2
         public static void BuscarDNI() //Busca por número de DNI, opción 4 del menú principal
         {
             Console.Write("Escriba el DNI:  ");
-            int buscar = Convert.ToInt32(Console.ReadLine());
+            /*int*/string buscar = Console.ReadLine();//Convert.ToInt32(Console.ReadLine());
 
             bool encontrado = false;
             for (int i = 0; i < cantidad; i++)
@@ -167,7 +169,7 @@ namespace TPN2
                 Console.WriteLine("Abriendo Archivo...");
                 StreamReader fichero = File.OpenText(nombreArchivo);
                 string linea1, linea2, linea3, linea4, linea5;
-                //DateTime linea6 = new DateTime();
+                DateTime linea6 = new DateTime();
                 // Error al leer lineas que no son del tipo fecha
                 do
                 {
@@ -178,15 +180,20 @@ namespace TPN2
                     linea3 = fichero.ReadLine();
                     linea4 = fichero.ReadLine();
                     linea5 = fichero.ReadLine();
-                    //DateTime linea6 = DateTime.Parse(fichero.ReadLine());                    
+                    linea6 = DateTime.Parse(fichero.ReadLine());                    
 
                     if (cantidad < capacidad - 1)
                     {
                         gente[cantidad].nombre = linea1;
                         gente[cantidad].email = linea2;
-                        gente[cantidad].nacimiento = Convert.ToInt32(linea3);
-                        gente[cantidad].dni = Convert.ToInt32(linea4);
-                        gente[cantidad].telefono = Convert.ToInt32(linea5);
+                        gente[cantidad].nacimiento = linea3;
+                        gente[cantidad].dni = linea4;
+                        gente[cantidad].telefono = linea5;
+                        gente[cantidad].turno = linea6;
+
+                        //gente[cantidad].nacimiento = Convert.ToInt32(linea3);
+                        //gente[cantidad].dni = Convert.ToInt32(linea4);
+                        //gente[cantidad].telefono = Convert.ToInt32(linea5);
                         //gente[cantidad].turno = linea6;
                         cantidad++;
                     }
@@ -214,7 +221,7 @@ namespace TPN2
         public static void AgendarTurno() //Agenda turnos con DNI 
         {
             Console.Write("Escriba el DNI:  ");
-            int buscar = Convert.ToInt32(Console.ReadLine());
+            /*int*/string buscar = Console.ReadLine();//Convert.ToInt32(Console.ReadLine());
             bool encontrado = false;
             for (int i = 0; i < cantidad; i++)
                 if (buscar == gente[i].dni)
