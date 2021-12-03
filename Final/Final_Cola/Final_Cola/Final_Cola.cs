@@ -4,13 +4,33 @@ using System.Collections;
 namespace Final_Cola
 {
     public class Final_Cola
-    {
-
-        //public string nombreCola;
-
-        public static void Main()
+    { 
+        static void Main()
         {
-                                      
+            Queue Cola = new Queue();
+            int menu;
+
+            do
+            {
+                menu = opcionesMenu();
+                switch (menu)
+                {
+                    case 1:
+                        Console.WriteLine("Creando Cola nuyeva");
+                        Cola = new Queue();
+                        break;
+                    case 2:
+                        break;
+                }
+            }
+            while (opcion != 9);
+            Console.WriteLine("El programa a finalizado.");
+
+        }
+
+
+        static int opcionesMenu()
+        {
             Console.WriteLine("1. Crear Cola");
             Console.WriteLine("2. Borrar Cola");
             Console.WriteLine("3. Agregar Pedido");
@@ -22,62 +42,14 @@ namespace Final_Cola
             Console.WriteLine("9. Salir");
 
             Console.Write("Escoja una opción: ");
-            
-            switch (Console.ReadLine())
-            {
-                
-                case "1": CrearCola(); break;
-                case "2": BorrarCola(); break;
-                case "3": AgregarPedido(); break;
-                case "4": BorrarPedido(); break;
-                case "5": Listar(); break;
-                case "6": ListarUltimo(); break;
-                case "7": ListarPrimero(); break;
-                case "8": CantidadPedido(); break;
-
-                case "9": // Salir de la aplicación
-                    Console.WriteLine();
-                    Console.WriteLine("Saliendo...");
-                    Console.WriteLine();
-                    bool terminado = true;
-                    break;
-                default:
-                    Console.WriteLine();
-                    Console.WriteLine("Opción incorrecta!");
-                    Console.WriteLine();
-                    break;
-            }
-
-        }
-        
-        public static void CrearCola() 
-        {
-            Console.Write("Ingrese el nombre de la nueva cola: ");
-            Queue nombreCola = new Queue();
-
-            Main();
         }
 
-        public static void BorrarCola() { }
-
-        public static int AgregarPedido() 
-        {
-            Console.Write("Agregar un Pedido: ");
-            int pedidos = Convert.ToInt32(Console.ReadLine());
-            nombreCola.Enqueue(pedidos);
-
-        }
-
-        public static void BorrarPedido() { }
-
-        public static void Listar() { }
-
-        public static void ListarUltimo() { }
-
-        public static void ListarPrimero() { }
-
-        public static void CantidadPedido() { }
 
 
     }
+
+
+    
+
+            
 }
